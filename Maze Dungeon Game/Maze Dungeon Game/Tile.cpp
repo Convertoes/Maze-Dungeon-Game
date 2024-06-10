@@ -5,20 +5,16 @@ using namespace std;
 
 Tile::Tile()		// default constructor
 {
-	posX = 0;
-	posY = 0;
 	tileType = 'e';
-	sprite = "  ";
+	sprite = ' ';
 	isPassable = false;
 	isCrumb = false;
 
 	return;
 }
 
-Tile::Tile(int _posX, int _posY, char _tileType, string _sprite, bool _isPassable)		// custom construtor
+Tile::Tile(char _tileType, char _sprite, bool _isPassable)		// custom construtor
 {
-	posX = _posX;
-	posY = _posY;
 	tileType = _tileType;
 	sprite = _sprite;
 	isPassable = _isPassable;
@@ -29,16 +25,6 @@ Tile::Tile(int _posX, int _posY, char _tileType, string _sprite, bool _isPassabl
 
 Tile::~Tile() 	// default destructor
 {
-}
-
-int Tile::getPosX()
-{
-	return posX;
-}
-
-int Tile::getPosY()
-{
-	return posY;
 }
 
 char Tile::getType()

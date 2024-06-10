@@ -9,7 +9,8 @@ class Utility
 		Utility(); 	// default constructor
 		virtual ~Utility(); 	// default destructor
 
-		void pauseAndClear();		
+		void pauseAndClear();	
+		int menu(string, string[], int, string);
 
 	protected:
 

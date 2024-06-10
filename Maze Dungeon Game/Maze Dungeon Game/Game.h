@@ -15,6 +15,7 @@ class Game : public Utility
 		Game();	// custom constructor
 		virtual ~Game(); 	// default destructor
 
+		void startGame();
 		void runGame();
 
 	protected:

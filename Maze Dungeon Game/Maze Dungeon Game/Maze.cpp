@@ -11,6 +11,10 @@ Maze::Maze()		// default constructor
 
 Maze::Maze() 		// custom construtor
 {
+    Tile* VWL = new Tile ('w', 219, false); // vertical wall
+    Tile* HWL = new Tile('w', 220, false);  // horizontal wall
+    Tile* SPC = new Tile('w', ' ', true); // empty block
+    
     if (difficulty == 1)
     {
 
@@ -18,7 +22,7 @@ Maze::Maze() 		// custom construtor
 
     else if (difficulty == 2)
     {
-
+        
     }
 
     else if (difficulty == 3)
@@ -43,21 +47,28 @@ void Maze::displayMaze()
 {
     for (int rows = 0; rows < mazeLength; rows++)
     {
-        for (int columns = 0; columns < mazeLength; columns++)
+       
+        if (difficulty == 1)
         {
-            if (difficulty == 1)
-            {
-                cout << mazeEasy[rows][columns];
+            for (int columns = 0; columns < mazeLength; columns++)
+            {  
+                mazeEasy[rows][columns]->display();
             }
-
-            else if (difficulty == 2)
+        }
+        
+        else if (difficulty == 2)
+        {
+            for (int columns = 0; columns < mazeLength; columns++)
             {
-                cout << mazeNormal[rows][columns];
+                mazeNormal[rows][columns]->display();
             }
+        }
 
-            else if (difficulty == 3)
+        else if (difficulty == 3)
+        {
+            for (int columns = 0; columns < mazeLength; columns++)
             {
-                cout << mazeHard[rows][columns];
+                mazeHard[rows][columns]->display();
             }
         }
 

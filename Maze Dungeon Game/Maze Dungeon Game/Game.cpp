@@ -18,3 +18,10 @@ Game::Game() 		// custom construtor
 Game::~Game() 	// default destructor
 {
 }
+
+void Game::startGame()
+{
+
+}
+
+void Game::runGame();

@@ -8,11 +8,9 @@ class Tile : public Utility
 {
 	public:
 		Tile(); 	// default constructor
-		Tile(int, int, char, string, bool);	// custom constructor
+		Tile(char, char, bool);	// custom constructor
 		virtual ~Tile(); 	// default destructor
 
-		int getPosX();
-		int getPosY();
 		char getType();
 		bool getIsPassable();
 		bool getIsCrumb();
@@ -21,10 +19,8 @@ class Tile : public Utility
 		void display();
 
 	protected:
-		int posX;
-		int posY;
 		char tileType;
-		string sprite;
+		char sprite;
 		bool isPassable;
 
 	private:

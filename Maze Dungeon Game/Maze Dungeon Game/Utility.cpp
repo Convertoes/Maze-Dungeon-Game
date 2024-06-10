@@ -44,3 +44,36 @@ int Utility::randomNumb(int range, int offset) // generates a random number with
 
     return randNumb;
 }
+
+int Utility::menu(string title, string menuArray[], int menuSize, string errorMessage) // generic menu function
+{
+	int userInput = 0;
+
+	do
+	{
+		cout << title << endl;
+		cout << endl;
+
+		for (int i = 0; i < menuSize; i++)
+		{
+			cout << i + 1 << ") " << menuArray[i] << endl;
+		}
+
+		cout << endl;
+		cout << endl << "Input: ";
+		cin >> userInput;
+		pauseAndClear();
+
+
+		if (userInput < 1 or userInput > menuSize)
+		{
+			cout << errorMessage << endl;
+
+			pauseAndClear();
+		}
+
+
+	} while (userInput < 1 or userInput > menuSize);
+
+	return userInput;
+}
