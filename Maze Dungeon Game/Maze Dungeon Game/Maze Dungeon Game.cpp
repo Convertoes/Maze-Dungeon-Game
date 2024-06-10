@@ -1,17 +1,18 @@
-// windows with menu
 // Author: Alex Larochette
-// Project:
-// Description:
+// Project: Maze Game Final Project
+// Description: A dungeon maze game with moving enemies, items, keys, locked doors, an autosolver and 
 // Created:
 // Modified:
 
-// ============================= libraries ========================================================================================================
+// ============================= libraries ====================================================================================================================
 
 #include <iostream>
 #include <windows.h>
+#include "Utility.h"
+#include "maze.h" // ask about this
 using namespace std;
 
-// ============================= function prototypes ==============================================================================================
+// ============================= function prototypes ==========================================================================================================
 
 int menu(string, string[], int, string);
 void pauseAndClear();
@@ -60,17 +61,17 @@ void pauseAndClear() // clears the screen and waits for user to input something 
 	return;
 }
 
-// ============================= main =============================================================================================================
+// ============================= main =========================================================================================================================
 
 int main()
 {
 	int userInput = 0;
-	string menuArray[6] = { "Start New Game", "Autosolve Maze", "Information", "", "Quit Program"};
+	string menuArray[4] = { "Start New Game", "Autosolve Maze", "Information", "Quit Program"};
 	system("CLS");
 
 	do
 	{
-		userInput = menu("", menuArray, 2, "Please enter a valid input.");
+		userInput = menu("Cryptic Corridors", menuArray, 4, "Please enter a valid input.");
 
 		switch (userInput)
 		{
@@ -79,11 +80,19 @@ int main()
 			break;
 
 		case 2:
+			pauseAndClear();
+			break;
+
+		case 3:
+			pauseAndClear();
+			break;
+
+		case 4:
 			cout << "Thank you for using this program. Goodbye." << endl;
 			break;
 		}
 
-	} while (userInput != 2);
+	} while (userInput != 4);
 
 	return 0;
 }
