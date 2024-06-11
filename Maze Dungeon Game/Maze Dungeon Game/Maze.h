@@ -11,11 +11,11 @@ class Maze : public Utility
 		Maze(); 	// default constructor
 		Maze();	// custom constructor
 		virtual ~Maze(); 	// default destructor
-
+/*
 		Tile* mazeEasy[15][15];
 		Tile* mazeNormal[20][20];
 		Tile* mazeHard[30][30];
-
+*/
 		void displayMaze();
 		int getLength();
 
