@@ -3,16 +3,16 @@
 #include <iostream>
 #include "Utility.h"
 #include "Maze.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "Item.h"
 using namespace std;
+
+class Player;
+class Enemy;
+class Item;
 
 class Game : public Utility
 {
 	public:
 		Game(); 	// default constructor
-		Game();	// custom constructor
 		virtual ~Game(); 	// default destructor
 
 		void startGame();
@@ -21,9 +21,12 @@ class Game : public Utility
 	protected:
 
 	private:
-		Maze* mazes[3];
+		Maze* maze;
+		Player* player;
+		Enemy* monsters[10];
+		Item* items[15];
 		
-		void initializeGame();
+		//void initializeGame();
 		void initializeDifficulty();
 
 };

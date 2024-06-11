@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <windows.h>
+#include "Utility.h"
 #include "Game.h"
 using namespace std;
 

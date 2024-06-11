@@ -9,13 +9,9 @@ class Maze : public Utility
 {
 	public:
 		Maze(); 	// default constructor
-		Maze();	// custom constructor
+		Maze(int);	// custom constructor
 		virtual ~Maze(); 	// default destructor
-/*
-		Tile* mazeEasy[15][15];
-		Tile* mazeNormal[20][20];
-		Tile* mazeHard[30][30];
-*/
+
 		void displayMaze();
 		int getLength();
 
@@ -27,6 +23,9 @@ class Maze : public Utility
 		int endPosX;
 		int endPosY;
 
+		Tile* mazeNormal[20][20];
+		Tile* mazeEasy[15][15];
+		Tile* mazeHard[30][30];
 };
 
 #endif // MAZE_H
