@@ -3,6 +3,8 @@
 #include "Maze.h"
 #include "Game.h"
 #include "Item.h"
+#include "Player.h"
+#include "Enemy.h"
 #include "Utility.h"
 using namespace std;
 
@@ -27,7 +29,7 @@ Game::~Game() 	// default destructor
 {
 }
 
-void Game::startGame()
+void Game::playGame()
 {
 	string menuArray[4] = { "Play Game", "Autosolver", "Instructions", "Exit Program" };
 	int userInput = 0;
@@ -81,7 +83,13 @@ void Game::initializeDifficulty()
 
 void Game::runGame()
 {
-	maze->displayMaze(difficulty);
+	maze->displayMaze();
+	while ((player->getXCoord() != maze->getEndPosX() or player->getYCoord() != maze->getEndPosY()) or player->getIsAlive())
+	{
+		player->move();
+	}
+
+	cout << "congrats" << endl;
 
 	return;
 }

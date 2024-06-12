@@ -5,26 +5,26 @@
 
 class Node
 {
-public:
-	Node(); 	// default constructor
-	Node(Item*);	// custom constructor
-	virtual ~Node(); 	// default destructor
+	public:
+		Node(); 	// default constructor
+		Node(Item*);	// custom constructor
+		virtual ~Node(); 	// default destructor
 
-	Item* getItem();
-	void setItem(Item*);
-	Node* getNext();
-	void setNext(Node*);
-	Node* getPrev();
-	void setPrev(Node*);
+		Item* getItem();
+		void setItem(Item*);
+		Node* getNext();
+		void setNext(Node*);
+		Node* getPrev();
+		void setPrev(Node*);
 
-	void display();
+		void display();
 
-protected:
+	protected:
 
-private:
-	Node* previous;
-	Node* next;
-	Item *item;
+	private:
+		Node* previous;
+		Node* next;
+		Item *item;
 };
 
 #endif // NODE_H

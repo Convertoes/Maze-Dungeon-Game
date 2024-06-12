@@ -16,7 +16,7 @@ class Tile : public Utility
 		bool getIsCrumb();
 		void setIsCrumb(bool);
 
-		void display();
+		virtual void display();
 
 	protected:
 		char tileType;

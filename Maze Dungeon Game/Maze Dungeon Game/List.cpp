@@ -61,7 +61,7 @@ Node* List::getBack()
 }
 
 
-bool List::searchList(Item* _fugitive) // searches the list for a specified integer, returns true if the Item* is contained within the items of the list
+bool List::searchList(Item* _fugitive) // searches the list for a specified integer, returns true if the item is contained within the items of the list
 {
 	Node* iterator = front;
 	while (iterator != nullptr) // using an iterator to loop through the list until it runs into a nullptr

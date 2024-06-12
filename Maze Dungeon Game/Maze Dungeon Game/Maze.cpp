@@ -6,6 +6,7 @@ using namespace std;
 
 Maze::Maze()
 {
+    difficulty = 0;
     mazeLength = 20;
     fogDistance = 4;
     endPosX = 10;
@@ -95,10 +96,14 @@ Maze::Maze()
 
 Maze::Maze(int _difficulty)		// default constructor
 {
-    if (_difficulty == 1)
+    difficulty = _difficulty;
+    
+    if (difficulty == 1)
     {
         mazeLength = 15;
         fogDistance = 4;
+        startPosX = 1;
+        startPosY = 13;
         endPosX = 13;
         endPosY = 2;
 
@@ -116,7 +121,7 @@ Maze::Maze(int _difficulty)		// default constructor
             {VW, SP, VW, SP, VW, SP, HW, HW, HW, SP, VW, SP, VW, SP, VW},
             {VW, SP, SP, SP, SP, SP, VW, SP, SP, SP, SP, SP, VW, SP, VW},
             {VW, HW, SP, HW, HW, HW, VW, HW, SP, HW, HW, SP, VW, SP, VW},
-            {VW, SP, SP, SP, SP, SP, SP, SP, SP, VW ,SP ,SP, SP, SP, VW},
+            {VW, BG, SP, SP, SP, SP, SP, SP, SP, VW ,SP ,SP, SP, SP, VW},
             {VW, HW, HW, HW, HW, HW, HW, HW, HW, VW, HW, HW, HW, HW, VW}
         };
 
@@ -178,10 +183,12 @@ Maze::Maze(int _difficulty)		// default constructor
         }
     }
 
-    else if (_difficulty == 2)
+    else if (difficulty == 2)
     {
         mazeLength = 20;
         fogDistance = 3;
+        startPosX = 1;
+        startPosY = 18;
         endPosX = 10;
         endPosY = 9;
 
@@ -266,7 +273,7 @@ Maze::Maze(int _difficulty)		// default constructor
         }
     }
 
-    else if (_difficulty == 3)
+    else if (difficulty == 3)
     {
 
     }
@@ -274,6 +281,16 @@ Maze::Maze(int _difficulty)		// default constructor
 
 Maze::~Maze() 	// default destructor
 {
+}
+
+int Maze::getStartPosX()
+{
+    return startPosX;
+}
+
+int Maze::getStartPosY()
+{
+    return startPosY;
 }
 
 int Maze::getEndPosX()
@@ -286,9 +303,29 @@ int Maze::getEndPosY()
     return endPosY;
 }
 
-void Maze::displayMaze(int _difficulty)
+int Maze::getDifficulty()
 {
-    if (_difficulty == 1)
+    return difficulty;
+}
+
+Tile* Maze::getTileEasy(int _x, int _y)
+{
+    return mazeEasy[_y][_x];
+}
+
+Tile* Maze::getTileNormal(int _x, int _y)
+{
+    return mazeNormal[_y][_x];
+}
+
+Tile* Maze::getTileHard(int _x, int _y)
+{
+    return mazeHard[_y][_x];
+}
+
+void Maze::displayMaze()
+{
+    if (difficulty == 1)
     {
         for (int rows = 0; rows < mazeLength; rows++)
         {
@@ -301,7 +338,7 @@ void Maze::displayMaze(int _difficulty)
         }
     }
 
-    else if (_difficulty == 2)
+    else if (difficulty == 2)
     {
         cout << "test" << endl;
         for (int rows = 0; rows < mazeLength; rows++)
@@ -316,7 +353,7 @@ void Maze::displayMaze(int _difficulty)
         }
     }
 
-    else if (_difficulty == 3)
+    else if (difficulty == 3)
     {
         for (int rows = 0; rows < mazeLength; rows++)
         {
