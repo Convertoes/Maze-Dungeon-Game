@@ -3,11 +3,11 @@
 #include <iostream>
 #include "Utility.h"
 #include "Maze.h"
+#include "Item.h"
 using namespace std;
 
 class Player;
 class Enemy;
-class Item;
 
 class Game : public Utility
 {
@@ -25,6 +25,7 @@ class Game : public Utility
 		Player* player;
 		Enemy* monsters[10];
 		Item* items[15];
+		int difficulty;
 		
 		//void initializeGame();
 		void initializeDifficulty();

@@ -1,13 +1,14 @@
 #include <iostream>
+#include <windows.h>
 #include "Tile.h"
 #include "Utility.h"
 using namespace std;
 
 Tile::Tile()		// default constructor
 {
-	tileType = 'e';
+	tileType = 's';
 	sprite = ' ';
-	isPassable = false;
+	isPassable = true;
 	isCrumb = false;
 
 	return;
@@ -50,7 +51,7 @@ void Tile::setIsCrumb(bool _isCrumb)
 
 void Tile::display()
 {
-	cout << "sprite";
+	cout << sprite;
 
 	return;
 }

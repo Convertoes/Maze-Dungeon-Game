@@ -16,7 +16,6 @@ class Utility
 
 		void set_cursor(int, int);
 		int randomNumb(int, int);
-		int difficulty;
 
 	private:
 };

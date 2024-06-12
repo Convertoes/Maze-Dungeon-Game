@@ -5,8 +5,6 @@ using namespace std;
 
 Utility::Utility()		// default constructor
 {
-    difficulty = 0;
-
     return;
 }
 

@@ -12,7 +12,7 @@ class Maze : public Utility
 		Maze(int);	// custom constructor
 		virtual ~Maze(); 	// default destructor
 
-		void displayMaze();
+		void displayMaze(int);
 		int getLength();
 
 	protected:
@@ -25,7 +25,7 @@ class Maze : public Utility
 
 		Tile* mazeNormal[20][20];
 		Tile* mazeEasy[15][15];
-		Tile* mazeHard[30][30];
+		Tile* mazeHard[31][31];
 };
 
 #endif // MAZE_H
