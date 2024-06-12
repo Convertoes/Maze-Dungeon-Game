@@ -127,17 +127,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="Maze Dungeon Game.cpp" />
     <ClCompile Include="Maze.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Maze.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>

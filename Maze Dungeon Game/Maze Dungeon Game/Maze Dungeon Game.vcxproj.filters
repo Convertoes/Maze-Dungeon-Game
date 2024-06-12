@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Data Structures">
+      <UniqueIdentifier>{2d22ec43-f2d7-45ee-963b-b189604de2ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data Structures">
+      <UniqueIdentifier>{684b3c61-1015-4d06-b7c2-942e17b24458}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity Family">
+      <UniqueIdentifier>{ea87733b-66aa-4565-8765-d10afdffc030}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity Family">
+      <UniqueIdentifier>{f6df16f5-2127-4a4d-97f5-8a7c3ec34b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Maze">
+      <UniqueIdentifier>{536a0541-ca2f-46ad-86f8-4390240bfca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Maze">
+      <UniqueIdentifier>{a885bced-3db1-4875-bbb2-47616a1f825d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Maze Dungeon Game.cpp">
@@ -24,14 +42,29 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Maze.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entity Family</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Entity Family</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Entity Family</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source Files\Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="List.cpp">
+      <Filter>Source Files\Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="Maze.cpp">
+      <Filter>Source Files\Maze</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\Maze</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,14 +74,29 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Maze.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Entity Family</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Entity Family</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Entity Family</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Header Files\Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files\Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Maze.h">
+      <Filter>Header Files\Maze</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\Maze</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

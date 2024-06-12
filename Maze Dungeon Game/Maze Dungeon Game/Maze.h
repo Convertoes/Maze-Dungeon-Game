@@ -13,7 +13,8 @@ class Maze : public Utility
 		virtual ~Maze(); 	// default destructor
 
 		void displayMaze(int);
-		int getLength();
+		int getEndPosX();
+		int getEndPosY();
 
 	protected:
 

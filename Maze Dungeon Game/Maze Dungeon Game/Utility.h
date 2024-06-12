@@ -16,6 +16,14 @@ class Utility
 
 		void set_cursor(int, int);
 		int randomNumb(int, int);
+		static const char VW = 219;
+		static const char HW = 220;
+		static const char VD = 186;
+		static const char HD = 205;
+		static const char FN = 176;
+		static const char SP = ' ';
+		static const char BG = ' ';
+
 
 	private:
 };

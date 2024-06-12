@@ -16,7 +16,6 @@ class Game : public Utility
 		virtual ~Game(); 	// default destructor
 
 		void startGame();
-		void runGame();
 
 	protected:
 
@@ -27,8 +26,9 @@ class Game : public Utility
 		Item* items[15];
 		int difficulty;
 		
-		//void initializeGame();
+		void initializeGame();
 		void initializeDifficulty();
+		void runGame();
 
 };
 

@@ -4,14 +4,6 @@
 #include "Tile.h"
 using namespace std;
 
-static const char VW = 219;
-static const char HW = 220;
-static const char VD = 186;
-static const char HD = 205;
-static const char FN = 176;
-static const char SP = ' ';
-static const char BG = ' ';
-
 Maze::Maze()
 {
     mazeLength = 20;
@@ -284,11 +276,15 @@ Maze::~Maze() 	// default destructor
 {
 }
 
-int Maze::getLength() 
+int Maze::getEndPosX()
 {
-	return mazeLength;
+    return endPosX;
 }
 
+int Maze::getEndPosY()
+{
+    return endPosY;
+}
 
 void Maze::displayMaze(int _difficulty)
 {
