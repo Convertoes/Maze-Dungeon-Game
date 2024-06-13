@@ -12,12 +12,14 @@ class Maze : public Utility
 		Maze(int);	// custom constructor
 		virtual ~Maze(); 	// default destructor
 
-		void displayMaze();
+		int getMazeLength();
 		int getStartPosX();
 		int getStartPosY();
 		int getEndPosX();
 		int getEndPosY();
 		int getDifficulty();
+
+		void displayMaze();
 		Tile* getTileEasy(int, int);
 		Tile* getTileNormal(int, int);
 		Tile* getTileHard(int, int);

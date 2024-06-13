@@ -69,6 +69,20 @@ void Game::initializeGame()
 {
 	initializeDifficulty();
 	maze = new Maze(difficulty);
+	switch (difficulty)
+	{
+		case 1:
+			player = new Player(maze, maze->getStartPosX(), maze->getStartPosY(), "Player", 100, 10, 10, 153);
+			break;
+
+		case 2:
+
+			break;
+
+		case 3:
+
+			break;
+	}
 
 	return;
 }
@@ -83,13 +97,21 @@ void Game::initializeDifficulty()
 
 void Game::runGame()
 {
-	maze->displayMaze();
-	while ((player->getXCoord() != maze->getEndPosX() or player->getYCoord() != maze->getEndPosY()) or player->getIsAlive())
+	
+	do
 	{
 		player->move();
-	}
+	} while ((player->getXCoord() != maze->getEndPosX() or player->getYCoord() != maze->getEndPosY()) or player->getIsAlive() == false);
 
 	cout << "congrats" << endl;
+
+	return;
+}
+
+void Game::displayGame()
+{
+	maze->displayMaze();
+	player->display(maze->getStartPosX(), maze->getStartPosY());
 
 	return;
 }

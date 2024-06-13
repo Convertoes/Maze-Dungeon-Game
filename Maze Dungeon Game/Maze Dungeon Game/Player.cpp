@@ -52,30 +52,30 @@ void Player::move()
         return;
     }
 
-    if (maze->getDifficulty() == 1)
+    switch (maze->getDifficulty())  // moves the sprite if the tile at the temp coordinate is passable (different cases for difficulty)
     {
-        if (maze->getTileEasy(tempPosY, tempPosX)->getIsPassable() == true)
-        {
-            Entity::moveSprite(tempPosX, tempPosY);
-        }
-    }
+        case 1:
+            if (maze->getTileEasy(tempPosX, tempPosY)->getIsPassable() == true)
+            {
+                Entity::moveSprite(tempPosX, tempPosY);
+            }
+            break;
 
-    else if (maze->getDifficulty() == 2)
-    {
-        if (maze->getTileNormal(tempPosY, tempPosX)->getIsPassable() == true)
-        {
-            Entity::moveSprite(tempPosX, tempPosY);
-        }
-    }
+        case 2:
+            if (maze->getTileNormal(tempPosX, tempPosY)->getIsPassable() == true)
+            {
+                Entity::moveSprite(tempPosX, tempPosY);
+            }
+            break;
 
-    else if (maze->getDifficulty() == 3)
-    {
-        /*
-        if (maze->getTileHard(tempPosY, tempPosX)->getIsPassable() == true)
-        {
-            Entity::moveSprite(tempPosX, tempPosY);
-        }
-        */
+        case 3:
+            /*
+            if (maze->getTileHard(tempPosY, tempPosX)->getIsPassable() == true)
+            {
+                Entity::moveSprite(tempPosX, tempPosY);
+            }
+            */
+            break;
     }
 
     return;

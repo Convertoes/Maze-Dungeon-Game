@@ -17,7 +17,9 @@ class Entity : public Utility
 		int getYCoord();
 		string getName();
 		float getHealth();
+		float getStrength();
 		float getDefense();
+		void display(int, int);
 
 	protected:
 		Maze* maze;

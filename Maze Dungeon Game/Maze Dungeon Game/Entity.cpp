@@ -36,13 +36,51 @@ bool Entity::getIsAlive()	// gets the checkIfAlive method
 	return checkIsAlive();
 }
 
+int Entity::getXCoord()
+{
+	return xCoord;
+}
+
+int Entity::getYCoord()
+{
+	return yCoord;
+}
+
+string Entity::getName()
+{
+	return name;
+}
+
+float Entity::getHealth()
+{
+	return health;
+}
+
+float Entity::getStrength()
+{
+	return strength;
+}
+
+float Entity::getDefense()
+{
+	return defense;
+}
+
+void Entity::display(int _x, int _y)
+{
+	set_cursor(_x, _y);
+	cout << sprite;
+	set_cursor(0, maze->getMazeLength());	// returns cursor to the default console location
+
+	return;
+}
+
 void Entity::moveSprite(int _tempX, int _tempY)	// moves the character by one space, called from subclasses
 {
 	set_cursor(xCoord, yCoord);
 	cout << ' ';
 
-	set_cursor(_tempX, _tempY);
-	cout << sprite;
+	display(_tempX, _tempY);
 
 	xCoord = _tempX;
 	yCoord = _tempY;

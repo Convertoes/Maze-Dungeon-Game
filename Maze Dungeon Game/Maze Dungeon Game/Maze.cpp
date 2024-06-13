@@ -7,74 +7,17 @@ using namespace std;
 Maze::Maze()
 {
     difficulty = 0;
-    mazeLength = 20;
-    fogDistance = 4;
-    endPosX = 10;
-    endPosY = 9;
+    mazeLength = 0;
+    fogDistance = 0;
+    endPosX = 0;
+    endPosY = 0;
 
-    char mazeChar[20][20] = {
-        {HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW},
-        {VW, SP, SP, SP, SP, SP, SP, SP, SP, VW, SP, SP, SP, SP, SP, VW, SP, SP, SP, VW},
-        {VW, SP, VW, SP, VW, SP, HW, HW, HW, VW, SP, HW, HW, HW, SP, VW, HW, HW, SP, VW},
-        {VW, SP, VW, SP, VW, SP, SP, SP, SP, SP, SP, VW, SP, SP, SP, SP, SP, VW, SP, VW},
-        {VW, SP, VW, SP, VW, HW, HW, SP, HW, HW, HW, VW, HW, HW, HW, HW, SP, SP, SP, VW},
-        {VW, SP, SP, SP, VW, SP, SP, SP, SP, VW, SP, SP, SP, SP, SP, VW, SP, VW, SP, VW},
-        {VW, HW, HW, HW, VW, SP, HW, HW, HW, VW, HW, HW, SP, VW, SP, VW, SP, VW, SP, VW},
-        {VW, SP, SP, SP, VW, SP, VW, SP, SP, SP, SP, VW, SP, VW, SP, VW, SP, VW, SP, VW},
-        {VW, SP, VW, SP, VW, SP, VW, SP, HW, HW, HW, VW, SP, VW, SP, VW, SP, VW, SP, VW},
-        {VW, SP, SP, SP, VW, SP, VW, SP, VW, FN, FN, SP, SP, VW, SP, VW, SP, VW, SP, VW},
-        {VW, SP, HW, HW, VW, SP, VW, SP, VW, FN, FN, HW, HW, VW, SP, VW, SP, VW, SP, VW},
-        {VW, SP, VW, SP, SP, SP, VW, SP, VW, HW, HW, VW, SP, VW, SP, SP, SP, VW, SP, VW},
-        {VW, SP, VW, SP, VW, SP, VW, SP, SP, SP, SP, SP, SP, VW, SP, VW, SP, VW, SP, VW},
-        {VW, SP, SP, SP, VW, HW, VW, SP, HW, HW, HW, HW, HW, VW, SP, VW, HW, VW, SP, VW},
-        {VW, SP, VW, SP, VW, SP, SP, SP, SP, SP, VW, SP, SP, SP, SP, VW, SP, SP, SP, VW},
-        {VW, SP, VW, SP, SP, SP, HW, HW, HW, SP, VW, HW, HW, HW, HW, VW, SP, VW, SP, VW},
-        {VW, HW, VW, SP, VW, SP, SP, SP, SP, SP, VW, SP, SP, SP, SP, VW, SP, VW, SP, VW},
-        {VW, SP, SP, SP, VW, HW, HW, HW, SP, HW, VW, SP, HW, HW, SP, VW, SP, VW, SP, VW},
-        {VW, BG, SP, SP, VW, SP, SP, SP, SP, SP, SP, SP, SP, SP, SP, VW, SP, SP, SP, VW},
-        {VW, HW, HW, HW, VW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, VW, HW, HW, HW, VW}
-    };
-
-    for (int rows = 0; rows < mazeLength; rows++)
+    for (int rows = 0; rows < 20; rows++)
     {
-        for (int columns = 0; columns < mazeLength; columns++)
+        for (int columns = 0; columns < 20; columns++)
         {
-            if (mazeChar[rows][columns] == HW)
-            {
-                mazeNormal[rows][columns] = new Tile('w', 220, false);  // horizontal wall
-            }
-
-            else if (mazeChar[rows][columns] == VW)
-            {
-                mazeNormal[rows][columns] = new Tile('w', 219, false); // vertical wall
-            }
-
-            else if (mazeChar[rows][columns] == VD)
-            {
-                mazeNormal[rows][columns] = new Tile('d', 186, false);  // vertical door
-            }
-
-            else if (mazeChar[rows][columns] == HD)
-            {
-                mazeNormal[rows][columns] = new Tile('d', 205, false);  // horizontal door
-            }
-
-            else if (mazeChar[rows][columns] == FN)
-            {
-                mazeNormal[rows][columns] = new Tile('f', 176, true);    // finish tile
-            }
-
-            else if (mazeChar[rows][columns] == SP)
-            {
-                mazeNormal[rows][columns] = new Tile(); // empty space
-            }
-
-            else if (mazeChar[rows][columns] == BG)
-            {
-                mazeNormal[rows][columns] = new Tile('b', ' ', true); // beginning
-            }
+            mazeNormal[rows][columns] = nullptr;
         }
-
     }
 
     for (int rows = 0; rows < 15; rows++)
@@ -105,7 +48,7 @@ Maze::Maze(int _difficulty)		// default constructor
         startPosX = 1;
         startPosY = 13;
         endPosX = 13;
-        endPosY = 2;
+        endPosY = 1;
 
         char mazeChar[15][15] = {
             {HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW},
@@ -121,7 +64,7 @@ Maze::Maze(int _difficulty)		// default constructor
             {VW, SP, VW, SP, VW, SP, HW, HW, HW, SP, VW, SP, VW, SP, VW},
             {VW, SP, SP, SP, SP, SP, VW, SP, SP, SP, SP, SP, VW, SP, VW},
             {VW, HW, SP, HW, HW, HW, VW, HW, SP, HW, HW, SP, VW, SP, VW},
-            {VW, BG, SP, SP, SP, SP, SP, SP, SP, VW ,SP ,SP, SP, SP, VW},
+            {VW, SP, SP, SP, SP, SP, SP, SP, SP, VW ,SP ,SP, SP, SP, VW},
             {VW, HW, HW, HW, HW, HW, HW, HW, HW, VW, HW, HW, HW, HW, VW}
         };
 
@@ -129,39 +72,31 @@ Maze::Maze(int _difficulty)		// default constructor
         {
             for (int columns = 0; columns < mazeLength; columns++)
             {
-                if (mazeChar[rows][columns] == HW)
+                switch (mazeChar[rows][columns])
                 {
+                case HW:
                     mazeEasy[rows][columns] = new Tile('w', 220, false);  // horizontal wall
-                }
+                    break;
 
-                else if (mazeChar[rows][columns] == VW)
-                {
+                case VW:
                     mazeEasy[rows][columns] = new Tile('w', 219, false); // vertical wall
-                }
+                    break;
 
-                else if (mazeChar[rows][columns] == VD)
-                {
+                case VD:
                     mazeEasy[rows][columns] = new Tile('d', 186, false);  // vertical door
-                }
+                    break;
 
-                else if (mazeChar[rows][columns] == HD)
-                {
+                case HD:
                     mazeEasy[rows][columns] = new Tile('d', 205, false);  // horizontal door
-                }
+                    break;
 
-                else if (mazeChar[rows][columns] == FN)
-                {
+                case FN:
                     mazeEasy[rows][columns] = new Tile('f', 176, true);    // finish tile
-                }
+                    break;
 
-                else if (mazeChar[rows][columns] == SP)
-                {
+                case SP:
                     mazeEasy[rows][columns] = new Tile('w', ' ', true); // empty block
-                }
-
-                else if (mazeChar[rows][columns] == BG)
-                {
-                    mazeEasy[rows][columns] = new Tile('b', ' ', true); // beginning
+                    break;
                 }
             }
         }
@@ -211,7 +146,7 @@ Maze::Maze(int _difficulty)		// default constructor
             {VW, SP, VW, SP, SP, SP, HW, HW, HW, SP, VW, HW, HW, HW, HW, VW, SP, VW, SP, VW},
             {VW, HW, VW, SP, VW, SP, SP, SP, SP, SP, VW, SP, SP, SP, SP, VW, SP, VW, SP, VW},
             {VW, SP, SP, SP, VW, HW, HW, HW, SP, HW, VW, SP, HW, HW, SP, VW, SP, VW, SP, VW},
-            {VW, BG, SP, SP, VW, SP, SP, SP, SP, SP, SP, SP, SP, SP, SP, VW, SP, SP, SP, VW},
+            {VW, SP, SP, SP, VW, SP, SP, SP, SP, SP, SP, SP, SP, SP, SP, VW, SP, SP, SP, VW},
             {VW, HW, HW, HW, VW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, VW, HW, HW, HW, VW}
         };
 
@@ -219,39 +154,31 @@ Maze::Maze(int _difficulty)		// default constructor
         {
             for (int columns = 0; columns < mazeLength; columns++)
             {
-                if (mazeChar[rows][columns] == HW)
+                switch (mazeChar[rows][columns])
                 {
-                    mazeNormal[rows][columns] = new Tile('w', 220, false);  // horizontal wall
-                }
+                    case HW:
+                        mazeNormal[rows][columns] = new Tile('w', 220, false);  // horizontal wall
+                        break;
 
-                else if (mazeChar[rows][columns] == VW)
-                {
-                    mazeNormal[rows][columns] = new Tile('w', 219, false); // vertical wall
-                }
+                    case VW:
+                        mazeNormal[rows][columns] = new Tile('w', 219, false); // vertical wall
+                        break;
 
-                else if (mazeChar[rows][columns] == VD)
-                {
-                    mazeNormal[rows][columns] = new Tile('d', 186, false);  // vertical door
-                }
+                    case VD:
+                        mazeNormal[rows][columns] = new Tile('d', 186, false);  // vertical door
+                        break;
 
-                else if (mazeChar[rows][columns] == HD)
-                {
-                    mazeNormal[rows][columns] = new Tile('d', 205, false);  // horizontal door
-                }
+                    case HD:
+                        mazeNormal[rows][columns] = new Tile('d', 205, false);  // horizontal door
+                        break;
 
-                else if (mazeChar[rows][columns] == FN)
-                {
-                    mazeNormal[rows][columns] = new Tile('f', 176, true);    // finish tile
-                }
+                    case FN: 
+                        mazeNormal[rows][columns] = new Tile('f', 176, true);    // finish tile
+                        break;
 
-                else if (mazeChar[rows][columns] == SP)
-                {
-                    mazeNormal[rows][columns] = new Tile('w', ' ', true); // empty block
-                }
-
-                else if (mazeChar[rows][columns] == BG)
-                {
-                    mazeNormal[rows][columns] = new Tile('b', ' ', true); // beginning
+                    case SP:
+                        mazeNormal[rows][columns] = new Tile('w', ' ', true); // empty block
+                        break;
                 }
             }
         }
@@ -281,6 +208,11 @@ Maze::Maze(int _difficulty)		// default constructor
 
 Maze::~Maze() 	// default destructor
 {
+}
+
+int Maze::getMazeLength()
+{
+    return mazeLength;
 }
 
 int Maze::getStartPosX()
@@ -340,7 +272,6 @@ void Maze::displayMaze()
 
     else if (difficulty == 2)
     {
-        cout << "test" << endl;
         for (int rows = 0; rows < mazeLength; rows++)
         {
 

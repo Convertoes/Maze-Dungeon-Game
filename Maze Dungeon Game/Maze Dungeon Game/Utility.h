@@ -22,7 +22,6 @@ class Utility
 		static const char HD = 205;
 		static const char FN = 176;
 		static const char SP = ' ';
-		static const char BG = ' ';
 
 
 	private:

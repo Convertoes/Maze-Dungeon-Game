@@ -4,10 +4,9 @@
 #include "Utility.h"
 #include "Maze.h"
 #include "Item.h"
+#include "Player.h"
+#include "Enemy.h"
 using namespace std;
-
-class Player;
-class Enemy;
 
 class Game : public Utility
 {
@@ -29,6 +28,7 @@ class Game : public Utility
 		void initializeGame();
 		void initializeDifficulty();
 		void runGame();
+		void displayGame();
 
 };
 
