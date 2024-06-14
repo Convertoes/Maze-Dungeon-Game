@@ -14,7 +14,7 @@ class List
 		Node* getFront();
 		Node* getBack();
 
-		bool searchList(Item*);
+		bool searchList(string);
 		Item* index(int);
 		Node* nodeIndex(int);
 		void tryFindIndex(Item*, int&);

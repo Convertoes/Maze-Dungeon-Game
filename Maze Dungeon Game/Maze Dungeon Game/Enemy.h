@@ -10,7 +10,7 @@ class Enemy : public Entity
 {
 	public:
 		Enemy(); 	// default constructor
-		Enemy(Player*, Maze*, int, int, string, float, float, float, char);	// custom constructor with parent's constructor
+		Enemy(Player*, Maze*, int, int, string, float, float, float, char, string);	// custom constructor with parent's constructor
 		virtual ~Enemy(); 	// default destructor
 
 		Player* getPlayer();

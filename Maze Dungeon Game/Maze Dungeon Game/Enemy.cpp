@@ -10,7 +10,7 @@ Enemy::Enemy()		// default constructor
 	player = nullptr;
 }
 
-Enemy::Enemy(Player* _player, Maze* _maze, int _x, int _y, string _name, float _health, float _strength, float _defense, char _sprite) : Entity(_maze, _x, _y, _name, _health, _strength, _defense, _sprite)		// custom construtor with parent's constructor
+Enemy::Enemy(Player* _player, Maze* _maze, int _x, int _y, string _name, float _health, float _strength, float _defense, char _sprite, string _colour) : Entity(_maze, _x, _y, _name, _health, _strength, _defense, _sprite, _colour)		// custom construtor with parent's constructor
 {
 	player = _player;
 }

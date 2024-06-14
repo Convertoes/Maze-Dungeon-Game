@@ -72,11 +72,12 @@ void Game::initializeGame()
 	switch (difficulty)
 	{
 		case 1:
-			player = new Player(maze, maze->getStartPosX(), maze->getStartPosY(), "Player", 100, 10, 10, 153);
+			player = new Player(maze, maze->getStartPosX(), maze->getStartPosY(), "Player", 150, 15, 15, 153, "\033[36m");
+			items[0] = new Item("Key1", "\033[33m", 232, true, 13, 4, 'k');
 			break;
 
 		case 2:
-
+			player = new Player(maze, maze->getStartPosX(), maze->getStartPosY(), "Player", 100, 10, 10, 153, "\033[32m");
 			break;
 
 		case 3:
@@ -97,7 +98,7 @@ void Game::initializeDifficulty()
 
 void Game::runGame()
 {
-	
+	displayGame();
 	do
 	{
 		player->move();
@@ -112,6 +113,7 @@ void Game::displayGame()
 {
 	maze->displayMaze();
 	player->display(maze->getStartPosX(), maze->getStartPosY());
+	items[0]->display(false);
 
 	return;
 }

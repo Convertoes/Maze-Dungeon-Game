@@ -2,6 +2,7 @@
 #include <conio.h>
 #include "Player.h"
 #include "Enemy.h"
+#include "Tile.h"
 #include "Entity.h"
 using namespace std;
 
@@ -11,7 +12,7 @@ Player::Player()		// default constructor
 	hasKey = false;
 }
 
-Player::Player(Maze* _maze, int _x, int _y, string _name, float _health, float _strength, float _defense, char _sprite) : Entity(_maze, _x, _y, _name, _health, _strength, _defense, _sprite)	// custom construtor
+Player::Player(Maze* _maze, int _x, int _y, string _name, float _health, float _strength, float _defense, char _sprite, string _colour) : Entity(_maze, _x, _y, _name, _health, _strength, _defense, _sprite, _colour)	// custom construtor
 {
 	inventory = new List();
 	hasKey = false;
@@ -54,11 +55,17 @@ void Player::move()
 
     switch (maze->getDifficulty())  // moves the sprite if the tile at the temp coordinate is passable (different cases for difficulty)
     {
-        case 1:
-            if (maze->getTileEasy(tempPosX, tempPosY)->getIsPassable() == true)
+        case 1:            
+            if (maze->getTileEasy(tempPosX, tempPosY)->getIsPassable())
             {
                 Entity::moveSprite(tempPosX, tempPosY);
             }
+            
+            else if (maze->getTileEasy(tempPosX, tempPosY)->getType() == 'd')
+            {
+                tryOpenDoor(tempPosX, tempPosY);
+            }
+
             break;
 
         case 2:
@@ -107,6 +114,21 @@ void Player::displayInventory()
 {
 
     return;
+}
+
+void Player::tryOpenDoor(int _tempX, int _tempY)
+{
+    if (getInventory()->searchList("Key"))
+    {
+        maze->getTileEasy(_tempX, _tempY)->setIsPassable(true);
+        displayText(0, maze->getMazeLength() + 1, "You unlocked the door!");
+
+    }
+
+    else
+    {
+        displayText(0, maze->getMazeLength() + 1, "This door is locked! You need to find a key to advance.");
+    }
 }
 
 Enemy* Player::attack()

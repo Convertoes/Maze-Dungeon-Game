@@ -8,13 +8,16 @@ class Item : public Utility
 {
 	public:
 		Item(); 	// default constructor
-		Item(string, char, bool, int, int, char);
+		Item(string, string, char, bool, int, int, char);
 		virtual ~Item(); 	// default destructor
 
+		string getName();
+		
 		virtual void display(bool);
 
 	protected:
 		string name;
+		string colour;
 		char sprite;
 		bool isKey;
 		int posX;

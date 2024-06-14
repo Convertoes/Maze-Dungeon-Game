@@ -12,7 +12,8 @@ class Tile : public Utility
 		virtual ~Tile(); 	// default destructor
 
 		char getType();
-		bool getIsPassable();
+		virtual bool getIsPassable();
+		virtual void setIsPassable(bool);
 		bool getIsCrumb();
 		void setIsCrumb(bool);
 
@@ -21,7 +22,8 @@ class Tile : public Utility
 	protected:
 		char tileType;
 		char sprite;
-		bool isPassable;
+		bool isPassable();
+		bool canMove;
 
 	private:
 		bool isCrumb;

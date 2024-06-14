@@ -9,7 +9,7 @@ class Entity : public Utility
 {
 	public:
 		Entity(); 	// default constructor
-		Entity(Maze*, int, int, string, float, float, float, char);	// custom constructor with parent's constructor
+		Entity(Maze*, int, int, string, float, float, float, char, string);	// custom constructor with parent's constructor
 		virtual ~Entity(); 	// default destructor
 
 		bool getIsAlive();
@@ -30,6 +30,7 @@ class Entity : public Utility
 		float strength;
 		float defense;
 		char sprite;
+		string colour;
 
 		void moveSprite(int, int);
 		bool checkIsAlive();

@@ -12,7 +12,7 @@ class Player : public Entity
 {
 	public:
 		Player(); 	// default constructor
-		Player(Maze*, int, int, string, float, float, float, char);	// custom constructor with parent's constructor
+		Player(Maze*, int, int, string, float, float, float, char, string);	// custom constructor with parent's constructor
 		virtual ~Player(); 	// default destructor
 
 		void move();
@@ -21,6 +21,7 @@ class Player : public Entity
 		void useItem(Item*);
 		void addItem(Item*);
 		void displayInventory();
+		void tryOpenDoor(int, int);
 
 		Enemy* attack();
 

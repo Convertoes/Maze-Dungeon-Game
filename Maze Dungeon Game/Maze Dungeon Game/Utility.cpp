@@ -76,3 +76,16 @@ int Utility::menu(string title, string menuArray[], int menuSize, string errorMe
 
 	return userInput;
 }
+
+void Utility::displayText(int _x, int _y, string _message)
+{
+	set_cursor(_x, _y);
+	cout << _message << endl;
+	system("pause");
+	set_cursor(_x, _y);
+	cout << "                                                                               " << endl;
+	cout << "                                                                               " << endl;
+	return;
+}
+
+const string Utility::RESET = "\033[0m";

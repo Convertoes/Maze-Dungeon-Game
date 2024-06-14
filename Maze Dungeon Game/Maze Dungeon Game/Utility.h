@@ -11,20 +11,23 @@ class Utility
 
 		void pauseAndClear();	
 		int menu(string, string[], int, string);
+		void displayText(int, int, string);
 
 	protected:
 
 		void set_cursor(int, int);
 		int randomNumb(int, int);
-		static const char VW = 219;
-		static const char HW = 220;
-		static const char VD = 186;
-		static const char HD = 205;
-		static const char FN = 176;
-		static const char SP = ' ';
+		static const char VW = 219;	// vertical wall
+		static const char HW = 220;	// horizontal wall
+		static const char VD = 186; // vertical door
+		static const char HD = 205; // horizontal door
+		static const char FN = 176;	// finish
+		static const char SP = ' ';	// space
 
+		static const string RESET;
 
 	private:
+
 };
 
 #endif // UTILITY_H

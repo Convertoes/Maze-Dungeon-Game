@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 #include "Maze.h"
 #include "Entity.h"
 using namespace std;
@@ -13,9 +14,10 @@ Entity::Entity()		// default constructor
 	strength = 0.00;
 	defense = 0.00;
 	sprite = ' ';
+	colour = "\033[0m";
 }
 
-Entity::Entity(Maze* _maze, int _x, int _y, string _name, float _health, float _strength, float _defense, char _sprite) 		// custom construtor
+Entity::Entity(Maze* _maze, int _x, int _y, string _name, float _health, float _strength, float _defense, char _sprite, string _colour) 		// custom construtor
 {
 	maze = _maze;
 	xCoord = _x;
@@ -25,6 +27,7 @@ Entity::Entity(Maze* _maze, int _x, int _y, string _name, float _health, float _
 	strength = _strength;
 	defense = _defense;
 	sprite = _sprite;
+	colour = _colour;
 }
 
 Entity::~Entity() 	// default destructor
@@ -69,7 +72,9 @@ float Entity::getDefense()
 void Entity::display(int _x, int _y)
 {
 	set_cursor(_x, _y);
+	cout << colour;
 	cout << sprite;
+	cout << RESET;
 	set_cursor(0, maze->getMazeLength());	// returns cursor to the default console location
 
 	return;

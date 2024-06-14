@@ -8,18 +8,18 @@ Tile::Tile()		// default constructor
 {
 	tileType = 's';
 	sprite = ' ';
-	isPassable = true;
 	isCrumb = false;
+	canMove = false;
 
 	return;
 }
 
-Tile::Tile(char _tileType, char _sprite, bool _isPassable)		// custom construtor
+Tile::Tile(char _tileType, char _sprite, bool _canMove)		// custom construtor
 {
 	tileType = _tileType;
 	sprite = _sprite;
-	isPassable = _isPassable;
 	isCrumb = false;
+	canMove = _canMove;
 
 	return;
 }
@@ -35,7 +35,7 @@ char Tile::getType()
 
 bool Tile::getIsPassable()
 {
-	return isPassable;
+	return isPassable();
 }
 
 bool Tile::getIsCrumb()
@@ -53,5 +53,20 @@ void Tile::display()
 {
 	cout << sprite;
 
+	return;
+}
+
+bool Tile::isPassable()
+{
+	if (canMove)
+	{
+		return true;
+	}
+
+	return false;
+}
+void Tile::setIsPassable(bool _void)
+{
+	canMove = _void;
 	return;
 }

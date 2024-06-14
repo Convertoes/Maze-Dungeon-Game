@@ -2,6 +2,7 @@
 #include "Maze.h"
 #include "Utility.h"
 #include "Tile.h"
+#include "Door.h"
 using namespace std;
 
 Maze::Maze()
@@ -53,8 +54,8 @@ Maze::Maze(int _difficulty)		// default constructor
         char mazeChar[15][15] = {
             {HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW},
             {VW, SP, SP, SP, SP, SP, SP, SP, SP, SP ,SP ,SP, VW, FN, VW},
-            {VW, SP, HW, HW, HW, HW, HW, HW, HW, HW, HW, SP, SP, SP, VW},
-            {VW, SP, VW, SP, SP, SP, SP, SP, SP, SP, VW, HW, HW, HW, VW},
+            {VW, SP, HW, HW, HW, HW, HW, HW, HW, HW, HW, SP, VD, SP, VW},
+            {VW, SP, VW, SP, SP, SP, SP, SP, SP, SP, VW, HW, VW, HW, VW},
             {VW, SP, SP, SP, HW, HW, HW, HW, HW, SP, SP, SP, VW, SP, VW},
             {VW, SP, VW, SP, SP, SP, SP, SP, VW, SP, VW, SP, VW, SP, VW},
             {VW, SP, VW, HW, HW, SP, HW, HW, VW, HW, VW, SP, VW, SP, VW},
@@ -74,29 +75,29 @@ Maze::Maze(int _difficulty)		// default constructor
             {
                 switch (mazeChar[rows][columns])
                 {
-                case HW:
-                    mazeEasy[rows][columns] = new Tile('w', 220, false);  // horizontal wall
-                    break;
+                    case HW:
+                        mazeEasy[rows][columns] = new Tile('w', 220, false);  // horizontal wall
+                        break;
 
-                case VW:
-                    mazeEasy[rows][columns] = new Tile('w', 219, false); // vertical wall
-                    break;
+                    case VW:
+                        mazeEasy[rows][columns] = new Tile('w', 219, false); // vertical wall
+                        break;
 
-                case VD:
-                    mazeEasy[rows][columns] = new Tile('d', 186, false);  // vertical door
-                    break;
+                    case VD:
+                        mazeEasy[rows][columns] = new Door("\033[33m", 'd', 186, false);  // vertical door
+                        break;
 
-                case HD:
-                    mazeEasy[rows][columns] = new Tile('d', 205, false);  // horizontal door
-                    break;
+                    case HD:
+                        mazeEasy[rows][columns] = new Door("\033[33m", 'd', 205, false);  // horizontal door
+                        break;
 
-                case FN:
-                    mazeEasy[rows][columns] = new Tile('f', 176, true);    // finish tile
-                    break;
+                    case FN:
+                        mazeEasy[rows][columns] = new Tile('f', 176, true);    // finish tile
+                        break;
 
-                case SP:
-                    mazeEasy[rows][columns] = new Tile('w', ' ', true); // empty block
-                    break;
+                    case SP:
+                        mazeEasy[rows][columns] = new Tile('w', ' ', true); // empty block
+                        break;
                 }
             }
         }
@@ -165,14 +166,14 @@ Maze::Maze(int _difficulty)		// default constructor
                         break;
 
                     case VD:
-                        mazeNormal[rows][columns] = new Tile('d', 186, false);  // vertical door
+                        mazeNormal[rows][columns] = new Door("\033[33m", 'd', 186, false);  // vertical door
                         break;
 
                     case HD:
-                        mazeNormal[rows][columns] = new Tile('d', 205, false);  // horizontal door
+                        mazeNormal[rows][columns] = new Door("\033[33m", 'd', 205, false);  // horizontal door
                         break;
 
-                    case FN: 
+                    case FN:
                         mazeNormal[rows][columns] = new Tile('f', 176, true);    // finish tile
                         break;
 
