@@ -29,6 +29,7 @@ class Game : public Utility
 		void initializeDifficulty();
 		void runGame();
 		void displayGame();
+		void moveEnemies();
 
 		Item* checkItemCoord();
 

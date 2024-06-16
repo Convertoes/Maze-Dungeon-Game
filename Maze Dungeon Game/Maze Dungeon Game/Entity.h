@@ -19,7 +19,7 @@ class Entity : public Utility
 		float getHealth();
 		float getStrength();
 		float getDefense();
-		void display(int, int);
+		void display(bool);
 
 	protected:
 		Maze* maze;

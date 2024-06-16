@@ -14,13 +14,14 @@ class Enemy : public Entity
 		virtual ~Enemy(); 	// default destructor
 
 		Player* getPlayer();
+		void move();
+		void getMove();
 
 	protected:
 
 	private:
 		Player* player;
 
-		void move();
 };
 
 #endif // ENEMY_H

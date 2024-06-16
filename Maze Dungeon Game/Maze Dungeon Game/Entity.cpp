@@ -69,13 +69,21 @@ float Entity::getDefense()
 	return defense;
 }
 
-void Entity::display(int _x, int _y)
+void Entity::display(bool _displayName)
 {
-	set_cursor(_x, _y);
-	cout << colour;
-	cout << sprite;
-	cout << RESET;
-	set_cursor(0, maze->getMazeLength());	// returns cursor to the default console location
+	if (_displayName)
+	{
+		cout << name;
+	}
+
+	else
+	{
+		set_cursor(xCoord, yCoord);
+		cout << colour;
+		cout << sprite;
+		cout << RESET;
+		set_cursor(0, maze->getMazeLength());	// returns cursor to the default console location
+	}
 
 	return;
 }
@@ -85,10 +93,10 @@ void Entity::moveSprite(int _tempX, int _tempY)	// moves the character by one sp
 	set_cursor(xCoord, yCoord);
 	cout << ' ';
 
-	display(_tempX, _tempY);
-
 	xCoord = _tempX;
 	yCoord = _tempY;
+
+	display(false);
 
 	return;
 }

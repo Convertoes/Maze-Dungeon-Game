@@ -72,8 +72,9 @@ void Game::initializeGame()
 	switch (difficulty)
 	{
 		case 1:
-			player = new Player(maze, maze->getStartPosX(), maze->getStartPosY(), "Player", 150, 15, 15, 153, "\033[36m");
+			player = new Player(maze, maze->getStartPosX(), maze->getStartPosY(), "Player", 120, 15, 15, 153, "\033[36m");
 			items[0] = new Item("Key1", "\033[33m", 232, 13, 4, 'k');
+			monsters[0] = new Enemy(player, maze, 8, 1, "Ogre", 80, 10, 20, 225, "\033[31m");
 			break;
 
 		case 2:
@@ -83,6 +84,7 @@ void Game::initializeGame()
 			break;
 
 		case 3:
+			player = new Player(maze, maze->getStartPosX(), maze->getStartPosY(), "Player", 100, 10, 10, 153, "\033[90m");
 
 			break;
 	}
@@ -105,6 +107,7 @@ void Game::runGame()
 	{
 		player->displayInventory();
 		player->move();
+		moveEnemies();
 		Item* checkItem = checkItemCoord();
 		if (checkItem != nullptr)
 		{
@@ -121,7 +124,15 @@ void Game::runGame()
 void Game::displayGame()
 {
 	maze->displayMaze();
-	player->display(maze->getStartPosX(), maze->getStartPosY());
+	player->display(false);
+	for (int i = 0; i < 10; i++)
+	{
+		if (monsters[i] != nullptr)
+		{
+			monsters[i]->display(false);
+		}
+	}
+
 	for (int i = 0; i < 15; i++)
 	{
 		if (items[i] != nullptr)
@@ -130,6 +141,19 @@ void Game::displayGame()
 			{ 
 				items[i]->display(false);
 			}
+		}
+	}
+
+	return;
+}
+
+void Game::moveEnemies()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		if (monsters[i] != nullptr)
+		{
+			monsters[i]->move();
 		}
 	}
 

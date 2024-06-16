@@ -24,6 +24,13 @@ Player* Enemy::getPlayer()
 	return player;
 }
 
+void Enemy::getMove()
+{
+	move();
+
+	return;
+}
+
 void Enemy::move()
 {
 	int direction = 0;
