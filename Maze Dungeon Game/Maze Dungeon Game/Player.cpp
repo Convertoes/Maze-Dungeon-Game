@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Tile.h"
+#include "List.h"
 #include "Entity.h"
 using namespace std;
 
@@ -66,6 +67,8 @@ void Player::move()
                 tryOpenDoor(tempPosX, tempPosY);
             }
 
+
+
             break;
 
         case 2:
@@ -73,6 +76,12 @@ void Player::move()
             {
                 Entity::moveSprite(tempPosX, tempPosY);
             }
+
+            else if (maze->getTileNormal(tempPosX, tempPosY)->getType() == 'd')
+            {
+                tryOpenDoor(tempPosX, tempPosY);
+            }
+
             break;
 
         case 3:
@@ -98,38 +107,75 @@ bool Player::getHasKey()
     return hasKey;
 }
 
-void Player::useItem(Item*)
+void Player::useItem(Item* _toUse)
 {
+    if (_toUse != nullptr)
+    {
+        switch (_toUse->getType())
+        {
+            case 'k':
+                inventory->removeItem(_toUse);  // deletes the key as it has been used
+                delete _toUse;
+                break;
 
+            case 'p':
+
+                break;
+        }
+    }
     return;
 }
 
-void Player::addItem(Item*)
+void Player::addItem(Item* _toAdd)
 {
-
+    _toAdd->setIsTaken(true);
+    displayNameText(0, maze->getMazeLength() +3, "You picked up ", _toAdd->getName());
+    inventory->insertAfter(inventory->getBack(), new Node(_toAdd));
     return;
 }
 
 void Player::displayInventory()
 {
-
+    set_cursor(0, maze->getMazeLength() + 1);
+    clearLines(2);
+    set_cursor(0, maze->getMazeLength() + 1);
+    inventory->display();
     return;
 }
 
 void Player::tryOpenDoor(int _tempX, int _tempY)
 {
-    if (getInventory()->searchList("Key"))
+    if (inventory->searchList('k'))
     {
-        maze->getTileEasy(_tempX, _tempY)->setIsPassable(true);
-        displayText(0, maze->getMazeLength() + 1, "You unlocked the door!");
+        int position = inventory->findIndex(new Item("", "", ' ', 0, 0, 'k'));   // getting the position within the inventory where the key is located
+        switch (maze->getDifficulty())  // setting the door as passable/open
+        {
+        case 1:
+            maze->getTileEasy(_tempX, _tempY)->setIsPassable(true); 
+            break;
 
+        case 2:
+            maze->getTileNormal(_tempX, _tempY)->setIsPassable(true);
+            break;
+
+        case 3:
+            maze->getTileHard(_tempX, _tempY)->setIsPassable(true);
+            break;
+        }
+        
+        set_cursor(_tempX, _tempY);
+        cout << " ";
+        displayText(0, maze->getMazeLength() + 4, "You unlocked the door!");
+        displayNameText(0, maze->getMazeLength() + 1, "You used ", inventory->index(position)->getName());
+        useItem(inventory->index(position));    // uses key
     }
 
     else
     {
-        displayText(0, maze->getMazeLength() + 1, "This door is locked! You need to find a key to advance.");
+        displayText(0, maze->getMazeLength() + 4, "This door is locked! You need to find a key to advance.");
     }
 }
+
 
 Enemy* Player::attack()
 {

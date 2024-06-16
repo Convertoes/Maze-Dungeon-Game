@@ -131,11 +131,11 @@ Maze::Maze(int _difficulty)		// default constructor
         char mazeChar[20][20] = {
             {HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW, HW},
             {VW, SP, SP, SP, SP, SP, SP, SP, SP, VW, SP, SP, SP, SP, SP, VW, SP, SP, SP, VW},
-            {VW, SP, VW, SP, VW, SP, HW, HW, HW, VW, SP, HW, HW, HW, SP, VW, HW, HW, SP, VW},
+            {VW, SP, VW, SP, VW, SP, HW, HW, HW, VW, SP, HW, HW, VW, HD, VW, HW, HW, SP, VW},
             {VW, SP, VW, SP, VW, SP, SP, SP, SP, SP, SP, VW, SP, SP, SP, SP, SP, VW, SP, VW},
             {VW, SP, VW, SP, VW, HW, HW, SP, HW, HW, HW, VW, HW, HW, HW, HW, SP, SP, SP, VW},
             {VW, SP, SP, SP, VW, SP, SP, SP, SP, VW, SP, SP, SP, SP, SP, VW, SP, VW, SP, VW},
-            {VW, HW, HW, HW, VW, SP, HW, HW, HW, VW, HW, HW, SP, VW, SP, VW, SP, VW, SP, VW},
+            {VW, HW, HW, HW, VW, SP, HW, HW, HW, VW, HW, VW, HD, VW, SP, VW, SP, VW, SP, VW},
             {VW, SP, SP, SP, VW, SP, VW, SP, SP, SP, SP, VW, SP, VW, SP, VW, SP, VW, SP, VW},
             {VW, SP, VW, SP, VW, SP, VW, SP, HW, HW, HW, VW, SP, VW, SP, VW, SP, VW, SP, VW},
             {VW, SP, SP, SP, VW, SP, VW, SP, VW, FN, FN, SP, SP, VW, SP, VW, SP, VW, SP, VW},

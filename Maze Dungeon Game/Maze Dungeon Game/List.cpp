@@ -60,13 +60,17 @@ Node* List::getBack()
 	return back;
 }
 
+int List::getSize()
+{
+	return listSize;
+}
 
-bool List::searchList(string _fugitive) // searches the list for a specified name, returns true if the item is contained within the items of the list
+bool List::searchList(char _fugitive) // searches the list for a specified type of item, returns true if the item is contained within the items of the list
 {
 	Node* iterator = front;
 	while (iterator != nullptr) // using an iterator to loop through the list until it runs into a nullptr
 	{
-		if (iterator->getItem()->getName() == _fugitive) // if the item in the current position of the iterator points to the same as the searched node, true is returned
+		if (iterator->getItem()->getType() == _fugitive) // if the item in the current position of the iterator points to the same as the searched node, true is returned
 		{
 			return true;
 		}
@@ -76,6 +80,8 @@ bool List::searchList(string _fugitive) // searches the list for a specified nam
 
 	return false;
 }
+
+
 
 Item* List::index(int _position) // returns the nth value in the list
 {
@@ -145,7 +151,7 @@ int List::findIndex(Item* _item) // returns the position where the first occurre
 
 	while (iterator != nullptr) // uses an iterator to pass through the list
 	{
-		if (iterator->getItem() == _item) 	// if the item of iterator at it's position is the same as the value
+		if (iterator->getItem()->getType() == _item->getType()) 	// if the item of iterator at it's position is the same as the value
 		{
 			return counter;						// position is returned
 		}
@@ -164,7 +170,7 @@ Node* List::findNodeIndex(Item* _item) // returns the Node where the first occur
 
 	while (iterator != nullptr)
 	{
-		if (iterator->getItem() == _item)
+		if (iterator->getItem()->getType() == _item->getType())
 		{
 			return iterator;
 		}
@@ -206,7 +212,7 @@ void List::insertAfter(Node* _insertAfter, Node* _toInsert) // inserts a node in
 				front = _toInsert;
 			}
 
-			else if (_insertAfter->getItem() == front->getItem() and listSize == 1) // inserting into the back of a list with exactly one node
+			else if (_insertAfter->getItem()->getType() == front->getItem()->getType() and listSize == 1) // inserting into the back of a list with exactly one node
 			{
 				front->setNext(_toInsert);
 				_toInsert->setPrev(front);
@@ -214,7 +220,7 @@ void List::insertAfter(Node* _insertAfter, Node* _toInsert) // inserts a node in
 				back = _toInsert;
 			}
 
-			else if (_insertAfter->getItem() == back->getItem()) // inserting to the back of a list
+			else if (_insertAfter->getItem()->getType() == back->getItem()->getType()) // inserting to the back of a list
 			{
 				tempNode = back;
 				tempNode->setNext(_toInsert);
@@ -248,10 +254,10 @@ void List::insertAfter(Node* _insertAfter, Node* _toInsert) // inserts a node in
 	return;
 }
 
-void List::insertAfterValue(Item* _insertAfterValue, Item* _value) // inserts a value into this list after the first occurrence of another specified value in the list
+void List::insertAfterItem(Item* _insertAfterValue, Item* _toInsert) // inserts a value into this list after the first occurrence of another specified value in the list
 {
 	int position = -1; 	// position is -1, if the index does not exist then position will stay at -1
-	Node* insertNode = new Node(_value);
+	Node* insertNode = new Node(_toInsert);
 	Node* iterator = front;
 	Node* tempNode;
 	tryFindIndex(_insertAfterValue, position);
@@ -265,7 +271,7 @@ void List::insertAfterValue(Item* _insertAfterValue, Item* _value) // inserts a 
 				iterator = iterator->getNext(); // loops through the list to get to the node where the value is contained
 			}
 
-			if (iterator->getItem() == back->getItem()) // inserts to the back of the list
+			if (iterator->getItem()->getType() == back->getItem()->getType()) // inserts to the back of the list
 			{
 				tempNode = back;
 				tempNode->setNext(insertNode);
@@ -273,7 +279,7 @@ void List::insertAfterValue(Item* _insertAfterValue, Item* _value) // inserts a 
 				back = insertNode;
 			}
 
-			else if (listSize == 1 and _insertAfterValue == front->getItem()) // inserts into the back of a list with a size of 1
+			else if (listSize == 1 and _insertAfterValue->getType() == front->getItem()->getType()) // inserts into the back of a list with a size of 1
 			{
 				front->setNext(insertNode);
 				insertNode->setPrev(front);
@@ -321,14 +327,14 @@ void List::removeNode(Node* _toRemove) // removes a specified node from the list
 
 		if (counter != -1) // runs only if node exists within the list
 		{
-			if (_toRemove->getItem() == front->getItem() and listSize == 1) // removes the front/back of a list containing 1 node
+			if (_toRemove->getItem()->getType() == front->getItem()->getType() and listSize == 1) // removes the front/back of a list containing 1 node
 			{
 				front = nullptr;
 				back = nullptr;
 				delete tempNode;
 			}
 
-			else if (_toRemove->getItem() == front->getItem()) // removes the front of the list containing more than 1 node
+			else if (_toRemove->getItem()->getType() == front->getItem()->getType()) // removes the front of the list containing more than 1 node
 			{
 				front = front->getNext();
 				front->setPrev(nullptr);
@@ -336,7 +342,7 @@ void List::removeNode(Node* _toRemove) // removes a specified node from the list
 				delete tempNode;
 			}
 
-			else if (_toRemove->getItem() == back->getItem()) // removes the back of the list containing more than 1 node
+			else if (_toRemove->getItem()->getType() == back->getItem()->getType()) // removes the back of the list containing more than 1 node
 			{
 				tempNode = back;
 				back = back->getPrev();
@@ -380,7 +386,7 @@ void List::removePosition(int _position) // removes the nth Node from the list
 	{
 		isContained = index(_position); 	// using tryIndex to determine if the position is within the limits of the list
 
-		if (isContained != nullptr) 	// runs only if the position is in the list (counter will be > 0  if the pos is within the list)
+		if (isContained != nullptr) 	// runs only if the position is in the list (isContained will not be nullptr if the pos is within the list)
 		{
 			if (_position == 0 and listSize == 1) // removes the front of a list containing one node
 			{
@@ -397,7 +403,7 @@ void List::removePosition(int _position) // removes the nth Node from the list
 				delete tempNode;
 			}
 
-			else if (isContained == back->getItem()) // removes the back of a list
+			else if (isContained->getType() == back->getItem()->getType()) // removes the back of a list
 			{
 				tempNode = back;
 				back = back->getPrev();
@@ -444,14 +450,15 @@ void List::removeItem(Item* _removeValue)	// removes the first occurrence of a s
 
 		if (counter != -1) // if the value is not in the list, nothing will be removed
 		{
-			if (_removeValue == front->getItem() and listSize == 1) // removes the front/back of a list containing 1 node
+			if (_removeValue->getType() == front->getItem()->getType() and listSize == 1) // removes the front/back of a list containing 1 node
 			{
+				front->getItem();
 				front = nullptr;
 				back = nullptr;
 				delete tempNode; 
 			}
 
-			else if (_removeValue == front->getItem()) // removes the front of the list containing more than 1 node
+			else if (_removeValue->getType() == front->getItem()->getType()) // removes the front of the list containing more than 1 node
 			{
 				front = front->getNext();
 				front->setPrev(nullptr);
@@ -459,7 +466,7 @@ void List::removeItem(Item* _removeValue)	// removes the first occurrence of a s
 				delete tempNode;
 			}
 
-			else if (_removeValue == back->getItem()) // removes the back of the list containing more than 1 node
+			else if (_removeValue->getType() == back->getItem()->getType()) // removes the back of the list containing more than 1 node
 			{
 				tempNode = back;
 				back = back->getPrev();
@@ -495,29 +502,20 @@ void List::display() 	// A display function that uses an iterator to display the
 
 	if (listSize == 0)
 	{
-		cout << "This is an empty list. Please insert an item before displaying again." << endl;
+		cout << "Inventory is empty." << endl;
 	}
 
 	else
 	{
-		if (listSize == 1)
-		{
-			cout << "There is " << listSize << " item in the list. The item is: ";
-			iterator->display();
-		}
+		cout << "Inventory: ";
+		iterator->display();
+		iterator = iterator->getNext();
 
-		else
+		while (iterator != nullptr)
 		{
-			cout << "There are " << listSize << " values in the list. The values are: ";
+			cout << ", ";
 			iterator->display();
 			iterator = iterator->getNext();
-
-			while (iterator != nullptr)
-			{
-				cout << ", ";
-				iterator->display();
-				iterator = iterator->getNext();
-			}
 		}
 
 		cout << endl;

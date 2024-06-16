@@ -77,14 +77,40 @@ int Utility::menu(string title, string menuArray[], int menuSize, string errorMe
 	return userInput;
 }
 
+void Utility::clearLines(int _numbOfLines)	// manually clears a number of lines
+{
+	if (_numbOfLines > 0)
+	{
+		for (int i = 0; i < _numbOfLines; i++)
+		{
+			cout << "                                                                                                   " << endl;
+		}
+	}
+
+	return;
+}
+
 void Utility::displayText(int _x, int _y, string _message)
 {
+	set_cursor(_x, _y);
+	clearLines(2);
 	set_cursor(_x, _y);
 	cout << _message << endl;
 	system("pause");
 	set_cursor(_x, _y);
-	cout << "                                                                               " << endl;
-	cout << "                                                                               " << endl;
+	clearLines(2);
+	return;
+}
+
+void Utility::displayNameText(int _x, int _y, string _message, string _name)
+{
+	set_cursor(_x, _y);
+	clearLines(2);
+	set_cursor(_x, _y);
+	cout << _message << _name << endl;
+	system("pause");
+	set_cursor(_x, _y);
+	clearLines(2);
 	return;
 }
 

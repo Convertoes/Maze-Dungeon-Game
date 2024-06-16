@@ -11,7 +11,9 @@ class Utility
 
 		void pauseAndClear();	
 		int menu(string, string[], int, string);
+		void clearLines(int);
 		void displayText(int, int, string);
+		void displayNameText(int, int, string, string);
 
 	protected:
 

@@ -8,19 +8,17 @@ Item::Item()		// default constructor
 	name = "";
 	colour = "";
 	sprite = ' ';
-	isKey = false;
 	posX = 0;
 	posY = 0;
 	type = ' ';
 	isTaken = false;
 }
 
-Item::Item(string _name, string _colour, char _sprite, bool _isKey, int _x, int _y, char _type)	// custom constructor
+Item::Item(string _name, string _colour, char _sprite, int _x, int _y, char _type)	// custom constructor
 {
 	name = _name;
 	colour = _colour;
 	sprite = _sprite;
-	isKey = _isKey;
 	posX = _x;
 	posY = _y;
 	type = _type;
@@ -51,5 +49,30 @@ void Item::display(bool _nameBool) // displays either the sprite or the name of 
 		cout << RESET;
 	}
 
+	return;
+}
+
+char Item::getType()
+{
+	return type;
+}
+
+int Item::getXPos()
+{
+	return posX;
+}
+int Item::getYPos()
+{
+	return posY;
+}
+
+bool Item::getIsTaken()
+{
+	return isTaken;
+}
+
+void Item::setIsTaken(bool _isTaken)
+{
+	isTaken = _isTaken;
 	return;
 }

@@ -13,15 +13,16 @@ class List
 
 		Node* getFront();
 		Node* getBack();
+		int getSize();
 
-		bool searchList(string);
+		bool searchList(char);
 		Item* index(int);
 		Node* nodeIndex(int);
 		void tryFindIndex(Item*, int&);
 		int findIndex(Item*);
 		Node* findNodeIndex(Item*);
 		void insertAfter(Node*, Node*);
-		void insertAfterValue(Item*, Item*);
+		void insertAfterItem(Item*, Item*);
 		void removeNode(Node*);
 		void removePosition(int);
 		void removeItem(Item*);

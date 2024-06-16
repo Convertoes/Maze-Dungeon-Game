@@ -30,6 +30,8 @@ class Game : public Utility
 		void runGame();
 		void displayGame();
 
+		Item* checkItemCoord();
+
 };
 
 #endif // GAME_H

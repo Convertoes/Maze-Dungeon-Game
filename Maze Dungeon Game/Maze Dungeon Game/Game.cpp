@@ -44,7 +44,7 @@ void Game::playGame()
 		case 1:
 			initializeGame();
 			runGame();
-			pauseAndClear();
+			system("CLS");
 			break;
 
 		case 2:
@@ -73,11 +73,13 @@ void Game::initializeGame()
 	{
 		case 1:
 			player = new Player(maze, maze->getStartPosX(), maze->getStartPosY(), "Player", 150, 15, 15, 153, "\033[36m");
-			items[0] = new Item("Key1", "\033[33m", 232, true, 13, 4, 'k');
+			items[0] = new Item("Key1", "\033[33m", 232, 13, 4, 'k');
 			break;
 
 		case 2:
 			player = new Player(maze, maze->getStartPosX(), maze->getStartPosY(), "Player", 100, 10, 10, 153, "\033[32m");
+			items[0] = new Item("Key1", "\033[33m", 232, 1, 5, 'k');
+			items[1] = new Item("Key2", "\033[33m", 232, 17, 18, 'k');
 			break;
 
 		case 3:
@@ -101,10 +103,17 @@ void Game::runGame()
 	displayGame();
 	do
 	{
+		player->displayInventory();
 		player->move();
+		Item* checkItem = checkItemCoord();
+		if (checkItem != nullptr)
+		{
+			player->addItem(checkItem);
+		}
+		
 	} while ((player->getXCoord() != maze->getEndPosX() or player->getYCoord() != maze->getEndPosY()) or player->getIsAlive() == false);
 
-	cout << "congrats" << endl;
+	displayText(0, maze->getMazeLength() + 1, "You beat the game! Congratulations!");
 
 	return;
 }
@@ -113,7 +122,32 @@ void Game::displayGame()
 {
 	maze->displayMaze();
 	player->display(maze->getStartPosX(), maze->getStartPosY());
-	items[0]->display(false);
+	for (int i = 0; i < 15; i++)
+	{
+		if (items[i] != nullptr)
+		{
+			if (items[i]->getIsTaken() == false)	// if they aren't taken, they will get displayed
+			{ 
+				items[i]->display(false);
+			}
+		}
+	}
 
 	return;
+}
+
+Item* Game::checkItemCoord()  // checks if the player's coordinates match any of items on the map
+{
+	for (int i = 0; i < 15; i++)
+	{
+		if (items[i] != nullptr)
+		{
+			if (items[i]->getXPos() == player->getXCoord() and items[i]->getYPos() == player->getYCoord() and items[i]->getIsTaken() == false)
+			{
+				return items[i];
+			}
+		}
+	}
+
+	return nullptr;
 }
