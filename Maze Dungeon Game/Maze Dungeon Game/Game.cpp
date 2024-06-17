@@ -2,6 +2,7 @@
 #include <windows.h>
 #include "Maze.h"
 #include "Game.h"
+#include "Autosolver.h"
 #include "Item.h"
 #include "Player.h"
 #include "Enemy.h"
@@ -23,6 +24,8 @@ Game::Game()		// default constructor
 	{
 		items[i] = nullptr;
 	}
+
+	autosolver = nullptr;
 }
 
 Game::~Game() 	// default destructor
@@ -48,6 +51,7 @@ void Game::playGame()
 			break;
 
 		case 2:
+			autosolver = new Autosolver();
 			pauseAndClear();
 			break;
 

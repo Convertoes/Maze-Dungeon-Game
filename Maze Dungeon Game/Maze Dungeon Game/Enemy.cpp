@@ -39,6 +39,7 @@ void Enemy::move()
 	{
 		int tempPosX = xCoord;
 		int tempPosY = yCoord;
+		direction = randomNumb(4, 0);
 
 		switch (direction)
 		{

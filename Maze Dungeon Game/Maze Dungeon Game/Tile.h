@@ -2,13 +2,16 @@
 #define TILE_H
 #include <iostream>
 #include "Utility.h"
+#include "Item.h"
 using namespace std;
+
+class Item;		// forward declaring class item
 
 class Tile : public Utility
 {
 	public:
 		Tile(); 	// default constructor
-		Tile(char, char, bool);	// custom constructor
+		Tile(char, char, bool, Item*);	// custom constructor
 		virtual ~Tile(); 	// default destructor
 
 		char getType();
@@ -24,6 +27,7 @@ class Tile : public Utility
 		char sprite;
 		bool isPassable();
 		bool canMove;
+		Item* item;
 
 	private:
 		bool isCrumb;

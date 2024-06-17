@@ -10,16 +10,18 @@ Tile::Tile()		// default constructor
 	sprite = ' ';
 	isCrumb = false;
 	canMove = false;
+	item = nullptr;
 
 	return;
 }
 
-Tile::Tile(char _tileType, char _sprite, bool _canMove)		// custom construtor
+Tile::Tile(char _tileType, char _sprite, bool _canMove, Item* _item)		// custom construtor
 {
 	tileType = _tileType;
 	sprite = _sprite;
 	isCrumb = false;
 	canMove = _canMove;
+	item = _item;
 
 	return;
 }

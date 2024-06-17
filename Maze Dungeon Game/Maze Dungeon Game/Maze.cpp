@@ -76,27 +76,27 @@ Maze::Maze(int _difficulty)		// default constructor
                 switch (mazeChar[rows][columns])
                 {
                     case HW:
-                        mazeEasy[rows][columns] = new Tile('w', 220, false);  // horizontal wall
+                        mazeEasy[rows][columns] = new Tile('w', 220, false, nullptr);  // horizontal wall
                         break;
 
                     case VW:
-                        mazeEasy[rows][columns] = new Tile('w', 219, false); // vertical wall
+                        mazeEasy[rows][columns] = new Tile('w', 219, false, nullptr); // vertical wall
                         break;
 
                     case VD:
-                        mazeEasy[rows][columns] = new Door("\033[33m", 'd', 186, false);  // vertical door
+                        mazeEasy[rows][columns] = new Door("\033[33m", 'd', 186, false, nullptr);  // vertical door
                         break;
 
                     case HD:
-                        mazeEasy[rows][columns] = new Door("\033[33m", 'd', 205, false);  // horizontal door
+                        mazeEasy[rows][columns] = new Door("\033[33m", 'd', 205, false, nullptr);  // horizontal door
                         break;
 
                     case FN:
-                        mazeEasy[rows][columns] = new Tile('f', 176, true);    // finish tile
+                        mazeEasy[rows][columns] = new Tile('f', 176, true, nullptr);    // finish tile
                         break;
 
                     case SP:
-                        mazeEasy[rows][columns] = new Tile('w', ' ', true); // empty block
+                        mazeEasy[rows][columns] = new Tile('w', ' ', true, nullptr); // empty block
                         break;
                 }
             }
@@ -158,27 +158,27 @@ Maze::Maze(int _difficulty)		// default constructor
                 switch (mazeChar[rows][columns])
                 {
                     case HW:
-                        mazeNormal[rows][columns] = new Tile('w', 220, false);  // horizontal wall
+                        mazeNormal[rows][columns] = new Tile('w', 220, false, nullptr);  // horizontal wall
                         break;
 
                     case VW:
-                        mazeNormal[rows][columns] = new Tile('w', 219, false); // vertical wall
+                        mazeNormal[rows][columns] = new Tile('w', 219, false, nullptr); // vertical wall
                         break;
 
                     case VD:
-                        mazeNormal[rows][columns] = new Door("\033[33m", 'd', 186, false);  // vertical door
+                        mazeNormal[rows][columns] = new Door("\033[33m", 'd', 186, false, nullptr);  // vertical door
                         break;
 
                     case HD:
-                        mazeNormal[rows][columns] = new Door("\033[33m", 'd', 205, false);  // horizontal door
+                        mazeNormal[rows][columns] = new Door("\033[33m", 'd', 205, false, nullptr);  // horizontal door
                         break;
 
                     case FN:
-                        mazeNormal[rows][columns] = new Tile('f', 176, true);    // finish tile
+                        mazeNormal[rows][columns] = new Tile('f', 176, true, nullptr);    // finish tile
                         break;
 
                     case SP:
-                        mazeNormal[rows][columns] = new Tile('w', ' ', true); // empty block
+                        mazeNormal[rows][columns] = new Tile('w', ' ', true, nullptr); // empty block
                         break;
                 }
             }

@@ -9,7 +9,7 @@ class Door : public Tile
 {
 	public:
 		Door(); 	// default constructor
-		Door(string, char, char, bool);	// custom constructor with parent's constructor
+		Door(string, char, char, bool, Item*);	// custom constructor with parent's constructor
 		virtual ~Door(); 	// default destructor
 
 		bool getIsPassable();

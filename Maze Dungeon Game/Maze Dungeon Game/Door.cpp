@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Door.h"
 #include "Tile.h"
+#include "Item.h"
 using namespace std;
 
 Door::Door()		// default constructor
@@ -9,7 +10,7 @@ Door::Door()		// default constructor
 	isOpen = false;
 }
 
-Door::Door(string _colour, char _type, char _sprite, bool _canMove) : Tile(_type, _sprite, _canMove)		// custom construtor with parent's constructor
+Door::Door(string _colour, char _type, char _sprite, bool _canMove, Item* _item) : Tile(_type, _sprite, _canMove, _item)		// custom construtor with parent's constructor
 {
 	colour = _colour;
 	isOpen = false;

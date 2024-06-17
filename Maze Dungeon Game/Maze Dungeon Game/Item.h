@@ -2,6 +2,7 @@
 #define ITEM_H
 #include <iostream>
 #include "Utility.h"
+#include "Tile.h"
 using namespace std;
 
 class Item : public Utility
