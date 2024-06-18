@@ -35,6 +35,9 @@ class Game : public Utility
 
 		Item* checkItemCoord();
 
+		void runAutosolver();
+		void initializeAutosolver();
+
 };
 
 #endif // GAME_H

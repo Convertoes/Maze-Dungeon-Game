@@ -51,7 +51,8 @@ void Game::playGame()
 			break;
 
 		case 2:
-			autosolver = new Autosolver();
+			initializeAutosolver();
+			runAutosolver();
 			pauseAndClear();
 			break;
 
@@ -178,4 +179,23 @@ Item* Game::checkItemCoord()  // checks if the player's coordinates match any of
 	}
 
 	return nullptr;
+}
+
+void Game::runAutosolver()
+{
+	maze->displayMaze();
+	autosolver->display();
+	autosolver->solveMaze();
+
+	return;
+}
+
+void Game::initializeAutosolver()
+{
+	maze = new Maze(2);	// creates a maze with normal difficulty
+	autosolver = new Autosolver(maze, maze->getStartPosX(), maze->getStartPosY(), 233);
+	items[0] = new Item("Key1", "\033[33m", 232, 1, 5, 'k');
+	items[1] = new Item("Key2", "\033[33m", 232, 17, 18, 'k');
+
+	return;
 }

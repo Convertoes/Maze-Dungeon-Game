@@ -5,13 +5,17 @@ using namespace std;
 Autosolver::Autosolver()		// default constructor
 {
 	moveList = nullptr;
-	solutionMoves = nullptr;
+	lastMoves = nullptr;
 }
 
 Autosolver::Autosolver(Maze* _maze, int _x, int _y, char _sprite)		// custom constructor
 {
-	moveList = nullptr;
-	solutionMoves = nullptr;
+	moveList = new Stack();
+	lastMoves = new Stack();
+	maze = _maze;
+	xPos = _x;
+	yPos = _y;
+	sprite = _sprite;
 }
 
 Autosolver::~Autosolver() 	// default destructor
@@ -20,23 +24,62 @@ Autosolver::~Autosolver() 	// default destructor
 
 void Autosolver::solveMaze()
 {
-	switch (maze->getDifficulty())
+	do
 	{
-		case 1:
+		loadStack();
 
+		bool isBackTracking = false;
+		bool didMove = false;
+		while (isBackTracking == false or didMove == false)
+		{
+			switch (moveList->peek())
+			{
+				case 'u':
+					if (maze->getTileNormal(xPos, yPos - 1)->getIsPassable())
+					{
+						lastMoves->push(moveList->pop());
+						didMove = true;
+					}
+					break;
 
-			break;
+				case 'd':
+					if (maze->getTileNormal(xPos, yPos + 1)->getIsPassable())
+					{
+						lastMoves->push(moveList->pop());
+						didMove = true;
+					}
+					break;
 
-		case 2:
+				case 'r':
+					if (maze->getTileNormal(xPos + 1, yPos)->getIsPassable())
+					{
+						lastMoves->push(moveList->pop());
+						didMove = true;
+					}
+					break;
 
+				case 'l':
+					if (maze->getTileNormal(xPos - 1, yPos)->getIsPassable())
+					{
+						lastMoves->push(moveList->pop());
+						didMove = true;
+					}
+					break;
 
-			break;
+				case 'b':
+					lastMoves->push(moveList->pop());
+					isBackTracking = true;
+					break;
+			}
 
-		case 3:
+			if (isBackTracking)
+			{
+				
+			}
+		}
 
+	} while (xPos != maze->getEndPosX() or yPos != maze->getEndPosY());
 
-			break;
-	}
 }
 
 void Autosolver::display()
@@ -48,6 +91,16 @@ void Autosolver::display()
 	return;
 }
 
+int Autosolver::getXPos()
+{
+	return xPos;
+}
+
+int Autosolver::getYPos()
+{
+	return yPos;
+}
+
 void Autosolver::moveSprite(int _tempX, int _tempY)	// moves the character by one space, called from subclasses
 {
 	set_cursor(xPos, yPos);
@@ -57,6 +110,54 @@ void Autosolver::moveSprite(int _tempX, int _tempY)	// moves the character by on
 	yPos = _tempY;
 
 	display();
+
+	return;
+}
+
+void Autosolver::loadStack()
+{
+	switch (lastMoves->peek())
+	{
+		case 'u':
+			moveList->push('b');
+			moveList->push('d');
+			moveList->push('u');
+			moveList->push('l');
+			moveList->push('r');
+			break;
+
+		case 'd':
+			moveList->push('b');
+			moveList->push('u');
+			moveList->push('d');
+			moveList->push('l');
+			moveList->push('r');
+			break;
+
+		case 'r':
+			moveList->push('b');
+			moveList->push('l');
+			moveList->push('r');
+			moveList->push('d');
+			moveList->push('u');
+			break;
+
+		case 'l':
+			moveList->push('b');
+			moveList->push('r');
+			moveList->push('l');
+			moveList->push('d');
+			moveList->push('u');
+			break;
+
+		default:
+			moveList->push('b');
+			moveList->push('l');
+			moveList->push('r');
+			moveList->push('d');
+			moveList->push('u');
+			break;
+	}
 
 	return;
 }

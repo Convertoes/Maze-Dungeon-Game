@@ -16,18 +16,21 @@ class Autosolver : public Utility
 
 		void solveMaze();
 		void display();
+		int getXPos();
+		int getYPos();
 
 	protected:
 
 	private:
 		Stack* moveList;
-		Stack* solutionMoves;
+		Stack* lastMoves;
 		Maze* maze;
 		int xPos;
 		int yPos;
 		char sprite;
 
 		void moveSprite(int, int);
+		void loadStack();
 };
 
 #endif // AUTOSOLVER_H
