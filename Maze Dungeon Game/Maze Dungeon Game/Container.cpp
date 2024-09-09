@@ -9,6 +9,13 @@ Container::Container()		// default constructor
     return;
 }
 
+Container::Container(char _direction)
+{
+    next = nullptr;
+    direction = _direction;
+    return;
+}
+
 Container::Container(Container* _next, char _direction)
 {
     next = _next;
@@ -44,6 +51,6 @@ void Container::setDirection(char _direction)
 
 void Container::display()
 {
-    cout << direction << endl;
+    cout << direction;
     return;
 }

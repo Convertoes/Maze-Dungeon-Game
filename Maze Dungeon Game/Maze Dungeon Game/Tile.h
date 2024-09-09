@@ -19,6 +19,8 @@ class Tile : public Utility
 		virtual void setIsPassable(bool);
 		bool getIsCrumb();
 		void setIsCrumb(bool);
+		Item* getItem();
+		void setItem(Item*);
 
 		virtual void display();
 

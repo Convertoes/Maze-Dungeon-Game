@@ -56,18 +56,21 @@ void Player::move()
 
     switch (maze->getDifficulty())  // moves the sprite if the tile at the temp coordinate is passable (different cases for difficulty)
     {
-        case 1:            
+        case 1:
             if (maze->getTileEasy(tempPosX, tempPosY)->getIsPassable())
             {
                 Entity::moveSprite(tempPosX, tempPosY);
             }
-            
+
             else if (maze->getTileEasy(tempPosX, tempPosY)->getType() == 'd')
             {
                 tryOpenDoor(tempPosX, tempPosY);
             }
 
-
+            if (maze->getTileEasy(tempPosX, tempPosY)->getItem() != nullptr)
+            {
+                addItem(maze->getTileEasy(tempPosX, tempPosY)->getItem());
+            }
 
             break;
 
@@ -82,18 +85,31 @@ void Player::move()
                 tryOpenDoor(tempPosX, tempPosY);
             }
 
+            if (maze->getTileNormal(tempPosX, tempPosY)->getItem() != nullptr)
+            {
+                addItem(maze->getTileNormal(tempPosX, tempPosY)->getItem());
+            }
+
+
             break;
 
         case 3:
-            /*
-            if (maze->getTileHard(tempPosY, tempPosX)->getIsPassable() == true)
+            if (maze->getTileHard(tempPosX, tempPosY)->getIsPassable() == true)
             {
                 Entity::moveSprite(tempPosX, tempPosY);
             }
-            */
-            break;
-    }
 
+            if (maze->getTileHard(tempPosX, tempPosY)->getItem() != nullptr)
+            {
+                addItem(maze->getTileHard(tempPosX, tempPosY)->getItem());
+            }
+
+            else if (maze->getTileHard(tempPosX, tempPosY)->getType() == 'd')
+            {
+                tryOpenDoor(tempPosX, tempPosY);
+            }
+
+    }
     return;
 }
 

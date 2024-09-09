@@ -7,7 +7,8 @@ class Container
 {
 	public:
 		Container(); 	// default constructor
-		Container(Container*, char);
+		Container(char);	// custom constructor
+		Container(Container*, char);	// custom constructor
 		virtual ~Container(); 	// default destructor
 
 		Container* getNext();

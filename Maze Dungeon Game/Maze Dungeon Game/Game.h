@@ -26,17 +26,16 @@ class Game : public Utility
 		Item* items[15];
 		Autosolver* autosolver;
 		int difficulty;
-		
+
 		void initializeGame();
 		void initializeDifficulty();
 		void runGame();
 		void displayGame();
-		void moveEnemies();
-
-		Item* checkItemCoord();
+		Enemy* checkEnemies();
 
 		void runAutosolver();
 		void initializeAutosolver();
+		void combat(Enemy*);
 
 };
 

@@ -13,6 +13,7 @@ class Stack
 		void push(char);
 		char pop();
 		char peek();
+		int countStack();
 
 		void display();
 	protected:

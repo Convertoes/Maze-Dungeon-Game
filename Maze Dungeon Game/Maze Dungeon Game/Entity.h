@@ -17,6 +17,7 @@ class Entity : public Utility
 		int getYCoord();
 		string getName();
 		float getHealth();
+		void setHealth(float);
 		float getStrength();
 		float getDefense();
 		void display(bool);

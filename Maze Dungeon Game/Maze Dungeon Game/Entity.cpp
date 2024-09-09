@@ -59,6 +59,12 @@ float Entity::getHealth()
 	return health;
 }
 
+void Entity::setHealth(float _health)
+{
+	health = _health;
+	return;
+}
+
 float Entity::getStrength()
 {
 	return strength;

@@ -1,17 +1,22 @@
 #include <iostream>
 #include "Autosolver.h"
+#include "Windows.h"
+#include "conio.h"
+#include "List.h"
 using namespace std;
 
 Autosolver::Autosolver()		// default constructor
 {
 	moveList = nullptr;
-	lastMoves = nullptr;
+	mazePrevMoves = nullptr;
+	keyBackTrack = nullptr;
 }
 
 Autosolver::Autosolver(Maze* _maze, int _x, int _y, char _sprite)		// custom constructor
 {
 	moveList = new Stack();
-	lastMoves = new Stack();
+	mazePrevMoves = new Stack();
+	keyBackTrack = new Stack();
 	maze = _maze;
 	xPos = _x;
 	yPos = _y;
@@ -27,59 +32,67 @@ void Autosolver::solveMaze()
 	do
 	{
 		loadStack();
+		set_cursor(0, maze->getMazeLength() + 5);
+		clearLines(1);
+		moveList->display();
+		char getch = _getch();
 
 		bool isBackTracking = false;
 		bool didMove = false;
-		while (isBackTracking == false or didMove == false)
+		while (isBackTracking == false && didMove == false)
 		{
-			switch (moveList->peek())
+			char direction = moveList->pop();
+			int tempX = xPos;
+			int tempY = yPos;
+			
+			switch (direction)
 			{
 				case 'u':
-					if (maze->getTileNormal(xPos, yPos - 1)->getIsPassable())
-					{
-						lastMoves->push(moveList->pop());
-						didMove = true;
-					}
+					tempY--;
 					break;
 
 				case 'd':
-					if (maze->getTileNormal(xPos, yPos + 1)->getIsPassable())
-					{
-						lastMoves->push(moveList->pop());
-						didMove = true;
-					}
+					tempY++;
 					break;
 
 				case 'r':
-					if (maze->getTileNormal(xPos + 1, yPos)->getIsPassable())
-					{
-						lastMoves->push(moveList->pop());
-						didMove = true;
-					}
+					tempX++;
 					break;
 
 				case 'l':
-					if (maze->getTileNormal(xPos - 1, yPos)->getIsPassable())
-					{
-						lastMoves->push(moveList->pop());
-						didMove = true;
-					}
-					break;
-
-				case 'b':
-					lastMoves->push(moveList->pop());
-					isBackTracking = true;
+					tempX--;
 					break;
 			}
 
-			if (isBackTracking)
+			if (maze->getTileNormal(tempX, tempY)->getIsPassable())
 			{
-				
+				mazePrevMoves->push(opposite(moveList->peek()));
+				moveSprite(tempX, tempY);
+				maze->getTileNormal(tempX, tempY)->setIsCrumb(true);
+				didMove = true;
+			}
+
+			else if (direction == mazePrevMoves->peek())
+			{
+				isBackTracking = true;
+			}
+
+			if (maze->getTileNormal(tempX, tempY)->getItem() != nullptr)
+			{
+				inventory->insertAfterItem(nullptr, maze->getTileNormal(tempX, tempY)->getItem());
+				maze->getTileNormal(tempX, tempY)->getItem()->setIsTaken(true);
 			}
 		}
 
+		if (isBackTracking)
+		{
+			backTrackFunc();
+		}
+
+
 	} while (xPos != maze->getEndPosX() or yPos != maze->getEndPosY());
 
+	return;
 }
 
 void Autosolver::display()
@@ -104,7 +117,7 @@ int Autosolver::getYPos()
 void Autosolver::moveSprite(int _tempX, int _tempY)	// moves the character by one space, called from subclasses
 {
 	set_cursor(xPos, yPos);
-	cout << ' ';
+	cout << '.';
 
 	xPos = _tempX;
 	yPos = _tempY;
@@ -116,42 +129,37 @@ void Autosolver::moveSprite(int _tempX, int _tempY)	// moves the character by on
 
 void Autosolver::loadStack()
 {
-	switch (lastMoves->peek())
+	switch (mazePrevMoves->peek())
 	{
-		case 'u':
-			moveList->push('b');
-			moveList->push('d');
-			moveList->push('u');
-			moveList->push('l');
-			moveList->push('r');
-			break;
-
 		case 'd':
-			moveList->push('b');
-			moveList->push('u');
 			moveList->push('d');
+			moveList->push('u');
 			moveList->push('l');
 			moveList->push('r');
 			break;
 
-		case 'r':
-			moveList->push('b');
+		case 'u':
+			moveList->push('u');
+			moveList->push('d');
 			moveList->push('l');
 			moveList->push('r');
-			moveList->push('d');
-			moveList->push('u');
 			break;
 
 		case 'l':
-			moveList->push('b');
+			moveList->push('l');
+			moveList->push('r');
+			moveList->push('d');
+			moveList->push('u');
+			break;
+
+		case 'r':
 			moveList->push('r');
 			moveList->push('l');
 			moveList->push('d');
 			moveList->push('u');
 			break;
 
-		default:
-			moveList->push('b');
+		case 'e':
 			moveList->push('l');
 			moveList->push('r');
 			moveList->push('d');
@@ -160,4 +168,74 @@ void Autosolver::loadStack()
 	}
 
 	return;
+}
+
+void Autosolver::backTrackFunc()
+{
+	bool didMove = false;
+	while (didMove == false)
+	{
+		char direction = moveList->peek();
+		char checkBack = mazePrevMoves->peek();
+		int tempX = xPos;
+		int tempY = yPos;
+
+		switch (direction)
+		{
+		case 'u':
+			tempY--;
+			break;
+
+		case 'd':
+			tempY++;
+			break;
+
+		case 'r':
+			tempX++;
+			break;
+
+		case 'l':
+			tempX--;
+			break;
+		}
+
+		if (direction == checkBack)
+		{
+			mazePrevMoves->pop();
+			moveSprite(tempX, tempY);
+		}
+
+		else if (maze->getTileNormal(tempX, tempY)->getIsPassable())
+		{
+			moveList->pop();
+			mazePrevMoves->push(direction);
+			moveSprite(tempX, tempY);
+			maze->getTileNormal(tempX, tempY)->setIsCrumb(true);
+			didMove = true;
+		}
+	}
+
+	return;
+}
+
+char Autosolver::opposite(char _original)
+{
+	switch (_original)
+	{
+	case 'u':
+		return 'd';
+		break;
+
+	case 'd':
+		return 'u';
+		break;
+
+	case 'r':
+		return 'l';
+		break;
+
+	case 'l':
+		return 'r';
+		break;
+	}
 }

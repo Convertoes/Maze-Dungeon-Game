@@ -48,6 +48,23 @@ bool Tile::getIsCrumb()
 void Tile::setIsCrumb(bool _isCrumb)
 {
 	isCrumb = _isCrumb;
+
+	if (_isCrumb)
+	{
+		canMove = false;
+	}
+	return;
+}
+
+Item* Tile::getItem()
+{
+	return item;
+}
+
+void Tile::setItem(Item* _item)
+{
+	item = _item;
+
 	return;
 }
 
